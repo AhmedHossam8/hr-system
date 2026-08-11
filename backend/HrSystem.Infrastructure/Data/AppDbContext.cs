@@ -10,6 +10,7 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Employee> Employees => Set<Employee>();
+    public DbSet<Department> Departments => Set<Department>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -22,6 +23,11 @@ public class AppDbContext : DbContext
             entity.Property(e => e.Position).HasMaxLength(100);
             entity.Property(e => e.Department).HasMaxLength(100);
             entity.Property(e => e.Salary).HasPrecision(18, 2);
+        });
+        modelBuilder.Entity<Department>(entity =>
+        {
+            entity.Property(e => e.Name).HasMaxLength(100);
+            entity.Property(e => e.Code).HasMaxLength(100);
         });
     }
 }
