@@ -1,0 +1,38 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f3f4;
+}
+
+tr:hover {
+  background-color: #f8f9fa;
+}
+
+.delete {
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.loading {
+  color: #666;
+}
+
+.error {
+  color: #c0392b;
+  font-weight: bold;
+}

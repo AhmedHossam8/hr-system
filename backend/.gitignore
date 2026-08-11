@@ -1,0 +1,13 @@
+## .NET build artifacts
+bin/
+obj/
+*.user
+
+## Rider/VS
+.vs/
+.idea/
+
+## EF / SQLite
+*.db
+*.db-shm
+*.db-wal

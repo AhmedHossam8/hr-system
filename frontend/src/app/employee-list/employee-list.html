@@ -1,0 +1,44 @@
+<div class="employee-list">
+  <h2>Employees</h2>
+
+  @if (loading()) {
+    <p class="loading">Loading employees...</p>
+  } @else if (error()) {
+    <p class="error">{{ error() }}</p>
+  } @else {
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Position</th>
+          <th>Department</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Salary</th>
+          <th>Hire Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (employee of employees(); track employee.id) {
+          <tr>
+            <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+            <td>{{ employee.position }}</td>
+            <td>{{ employee.department }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.phone }}</td>
+            <td>{{ employee.salary | currency }}</td>
+            <td>{{ employee.hireDate | date: 'mediumDate' }}</td>
+            <td>
+              <button (click)="deleteEmployee(employee.id)" class="delete">Delete</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="8">No employees found.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
