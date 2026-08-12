@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
 
     public DbSet<Employee> Employees => Set<Employee>();
     public DbSet<Department> Departments => Set<Department>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -31,6 +32,11 @@ public class AppDbContext : DbContext
         {
             entity.Property(e => e.Name).HasMaxLength(100);
             entity.Property(e => e.Code).HasMaxLength(100);
+        });
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasIndex(e => e.Email).IsUnique();
+            entity.Property(e => e.PasswordHash).HasMaxLength(255);
         });
     }
 }
