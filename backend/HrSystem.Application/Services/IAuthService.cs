@@ -1,0 +1,10 @@
+using HrSystem.Application.DTOs;
+
+namespace HrSystem.Application.Services
+{
+    public interface IAuthService
+    {
+        Task<AuthResponseDto> RegisterAsync(RegisterDto dto);
+        Task<AuthResponseDto> LoginAsync(LoginDto dto);
+    }
+}
