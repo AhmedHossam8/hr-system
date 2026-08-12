@@ -16,12 +16,16 @@ public class EmployeeRepository : IEmployeeRepository
 
     public async Task<IEnumerable<Employee>> GetAllAsync()
     {
-        return await _context.Employees.ToListAsync();
+        return await _context.Employees
+            .Include(e => e.Department)
+            .ToListAsync();
     }
 
     public async Task<Employee?> GetByIdAsync(int id)
     {
-        return await _context.Employees.FindAsync(id);
+        return await _context.Employees
+            .Include(e => e.Department)
+            .FirstOrDefaultAsync(e => e.Id == id);
     }
 
     public async Task<Employee> AddAsync(Employee employee)

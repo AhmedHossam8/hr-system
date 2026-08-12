@@ -21,8 +21,11 @@ public class AppDbContext : DbContext
             entity.Property(e => e.Email).HasMaxLength(200);
             entity.Property(e => e.Phone).HasMaxLength(20);
             entity.Property(e => e.Position).HasMaxLength(100);
-            entity.Property(e => e.Department).HasMaxLength(100);
             entity.Property(e => e.Salary).HasPrecision(18, 2);
+
+            entity.HasOne(e => e.Department)
+                .WithMany(d => d.Employees)
+                .HasForeignKey(e => e.DepartmentId);
         });
         modelBuilder.Entity<Department>(entity =>
         {

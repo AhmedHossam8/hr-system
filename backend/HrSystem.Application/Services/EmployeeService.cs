@@ -34,7 +34,7 @@ public class EmployeeService : IEmployeeService
             Email = dto.Email,
             Phone = dto.Phone,
             Position = dto.Position,
-            Department = dto.Department,
+            DepartmentId = dto.DepartmentId,
             Salary = dto.Salary,
             HireDate = dto.HireDate,
         };
@@ -53,7 +53,7 @@ public class EmployeeService : IEmployeeService
             Email = dto.Email,
             Phone = dto.Phone,
             Position = dto.Position,
-            Department = dto.Department,
+            DepartmentId = dto.DepartmentId,
             Salary = dto.Salary,
             HireDate = dto.HireDate,
         };
@@ -76,7 +76,8 @@ public class EmployeeService : IEmployeeService
             Email = employee.Email,
             Phone = employee.Phone,
             Position = employee.Position,
-            Department = employee.Department,
+            DepartmentId = employee.DepartmentId,
+            DepartmentName = employee.Department?.Name ?? string.Empty,
             Salary = employee.Salary,
             HireDate = employee.HireDate,
         };

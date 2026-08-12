@@ -5,7 +5,8 @@ export interface Employee {
   email: string;
   phone: string;
   position: string;
-  department: string;
+  departmentId: number;
+  departmentName: string;
   salary: number;
   hireDate: string;
 }
