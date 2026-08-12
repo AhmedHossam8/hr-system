@@ -1,10 +1,12 @@
 using HrSystem.Application.DTOs;
 using HrSystem.Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HrSystem.Api.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 public class EmployeesController : ControllerBase
 {

@@ -9,11 +9,13 @@ namespace HrSystem.Application.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHasher _passwordHasher;
+        private readonly IJwtTokenGenerator _jwtTokenGenerator;
 
-        public AuthService(IUserRepository userRepository, IPasswordHasher passwordHasher)
+        public AuthService(IUserRepository userRepository, IPasswordHasher passwordHasher, IJwtTokenGenerator jwtTokenGenerator)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
+            _jwtTokenGenerator = jwtTokenGenerator;
         }
 
         public async Task<AuthResponseDto> RegisterAsync(RegisterDto dto)
@@ -26,7 +28,7 @@ namespace HrSystem.Application.Services
             var existing = await _userRepository.GetByEmailAsync(dto.Email);
             if (existing is not null)
             {
-                throw new BusinessRuleException("Email is already registered.");
+                throw new DuplicateEmailException("Email is already registered.");
             }
 
             var user = new User
@@ -54,14 +56,14 @@ namespace HrSystem.Application.Services
             return ToAuthResponse(user);
         }
 
-        private static AuthResponseDto ToAuthResponse(User user)
+        private AuthResponseDto ToAuthResponse(User user)
         {
             return new AuthResponseDto
             {
                 Name = user.Name,
                 Email = user.Email,
                 Role = user.Role.ToString(),
-                Token = string.Empty,
+                Token = _jwtTokenGenerator.GenerateToken(user),
             };
         }
     }
