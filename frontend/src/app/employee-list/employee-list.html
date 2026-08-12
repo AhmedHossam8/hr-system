@@ -1,6 +1,14 @@
 <div class="employee-list">
   <h2>Employees</h2>
 
+  <button (click)="toggleForm()" class="add-btn">
+    {{ showForm() ? 'Hide Form' : 'Add Employee' }}
+  </button>
+
+  @if (showForm()) {
+    <app-employee-form (employeeCreated)="onEmployeeCreated()"></app-employee-form>
+  }
+
   @if (loading()) {
     <p class="loading">Loading employees...</p>
   } @else if (error()) {

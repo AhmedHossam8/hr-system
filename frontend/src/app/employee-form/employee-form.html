@@ -1,0 +1,90 @@
+<div class="employee-form">
+  <h3>Add Employee</h3>
+
+  @if (message()) {
+    <p class="{{ message().startsWith('Failed') ? 'error' : 'success' }}">{{ message() }}</p>
+  }
+
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input id="firstName" type="text" formControlName="firstName" />
+        @if (firstName.invalid && firstName.touched) {
+          <span class="validation">First name is required.</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input id="lastName" type="text" formControlName="lastName" />
+        @if (lastName.invalid && lastName.touched) {
+          <span class="validation">Last name is required.</span>
+        }
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" />
+        @if (email.invalid && email.touched) {
+          <span class="validation">Enter a valid email address.</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input id="phone" type="text" formControlName="phone" />
+        @if (phone.invalid && phone.touched) {
+          <span class="validation">Phone is required.</span>
+        }
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="position">Position</label>
+        <input id="position" type="text" formControlName="position" />
+        @if (position.invalid && position.touched) {
+          <span class="validation">Position is required.</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="departmentId">Department</label>
+        <select id="departmentId" formControlName="departmentId">
+          <option [ngValue]="null" disabled>Select a department</option>
+          @for (department of departments(); track department.id) {
+            <option [ngValue]="department.id">{{ department.name }}</option>
+          }
+        </select>
+        @if (departmentId.invalid && departmentId.touched) {
+          <span class="validation">Department is required.</span>
+        }
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="salary">Salary</label>
+        <input id="salary" type="number" formControlName="salary" />
+        @if (salary.invalid && salary.touched) {
+          <span class="validation">Salary must be a positive number.</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="hireDate">Hire Date</label>
+        <input id="hireDate" type="date" formControlName="hireDate" />
+        @if (hireDate.invalid && hireDate.touched) {
+          <span class="validation">Hire date is required.</span>
+        }
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="employeeForm.invalid || submitting()">
+      {{ submitting() ? 'Saving...' : 'Save Employee' }}
+    </button>
+  </form>
+</div>

@@ -28,6 +28,16 @@ tr:hover {
   cursor: pointer;
 }
 
+.add-btn {
+  background-color: #1e8449;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
 .loading {
   color: #666;
 }

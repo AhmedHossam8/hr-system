@@ -32,7 +32,10 @@ public class EmployeeRepository : IEmployeeRepository
     {
         _context.Employees.Add(employee);
         await _context.SaveChangesAsync();
-        return employee;
+
+        return await _context.Employees
+            .Include(e => e.Department)
+            .FirstAsync(e => e.Id == employee.Id);
     }
 
     public async Task UpdateAsync(Employee employee)

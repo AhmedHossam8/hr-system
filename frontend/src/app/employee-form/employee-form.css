@@ -1,0 +1,64 @@
+.employee-form {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+input,
+select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.validation {
+  color: #c0392b;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+button[type='submit'] {
+  background-color: #1a5276;
+  color: white;
+  border: none;
+  padding: 0.55rem 1.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+button[type='submit']:disabled {
+  background-color: #aab7b8;
+  cursor: not-allowed;
+}
+
+.success {
+  color: #1e8449;
+  font-weight: bold;
+}
+
+.error {
+  color: #c0392b;
+  font-weight: bold;
+}

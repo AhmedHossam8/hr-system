@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Employee } from '../models/employee';
+import { CreateEmployee, Employee } from '../models/employee';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class EmployeeService {
     return this.http.get<Employee>(`${this.apiUrl}/${id}`);
   }
 
-  createEmployee(employee: Employee): Observable<Employee> {
+  createEmployee(employee: CreateEmployee): Observable<Employee> {
     return this.http.post<Employee>(this.apiUrl, employee);
   }
 

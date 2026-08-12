@@ -3,10 +3,11 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 
 import { Employee } from '../models/employee';
 import { EmployeeService } from '../services/employee.service';
+import { EmployeeForm } from '../employee-form/employee-form';
 
 @Component({
   selector: 'app-employee-list',
-  imports: [CurrencyPipe, DatePipe],
+  imports: [CurrencyPipe, DatePipe, EmployeeForm],
   templateUrl: './employee-list.html',
   styleUrl: './employee-list.css',
 })
@@ -16,6 +17,7 @@ export class EmployeeList implements OnInit {
   employees = signal<Employee[]>([]);
   loading = signal(true);
   error = signal('');
+  showForm = signal(false);
 
   ngOnInit(): void {
     this.loadEmployees();
@@ -39,5 +41,14 @@ export class EmployeeList implements OnInit {
       next: () => this.loadEmployees(),
       error: (err) => this.error.set('Failed to delete: ' + err.message),
     });
+  }
+
+  toggleForm(): void {
+    this.showForm.update((visible) => !visible);
+  }
+
+  onEmployeeCreated(): void {
+    this.loadEmployees();
+    this.showForm.set(false);
   }
 }
